@@ -51,5 +51,4 @@ addons:
       - gcc-7
       - g++-7
       - clang-6.0
-      - libsystemd-dev
-      - gcovr
+      - cmake
