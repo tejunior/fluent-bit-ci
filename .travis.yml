@@ -1,0 +1,55 @@
+dist: bionic
+language: c
+
+git:
+  depth: 3
+
+arch:
+  - amd64
+  - arm64
+
+compiler:
+  - gcc
+  - clang
+
+env:
+  - TAG_VERSION=""
+
+before_script:
+
+matrix:
+  include:
+    - os: linux
+      # env: FLB_OPT="-DFLB_COVERAGE=On"
+      dist: bionic
+      language: c
+      compiler: gcc
+      script: |
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+
+script: |
+  echo "CC = $CC, CXX = $CXX"
+  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
+  sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+  sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 90
+  cd ~
+  sudo git clone https://github.com/fluent/fluent-bit.git
+  cd fluent-bit
+  echo "checkout tag $TAG_VERSION"
+  sudo git checkout tags/$TAG_VERSION
+  cd build
+  sudo cmake ../
+  sudo make
+  file bin/fluent-bit
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+      - g++-7
+      - clang-6.0
+      - libsystemd-dev
+      - gcovr
