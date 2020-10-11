@@ -13,7 +13,7 @@ compiler:
   - clang
 
 env:
-  - TAG_VERSION=""
+  - TAG_VERSION="v1.6.0"
 
 before_script:
 
