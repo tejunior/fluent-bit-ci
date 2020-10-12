@@ -45,6 +45,5 @@ deploy:
   on:
     repo: tejunior/fluent-bit-ci
     branch: main
-    tags: 'true'
   skip_cleanup: 'true'
   overwrite: 'true'
