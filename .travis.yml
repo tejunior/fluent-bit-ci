@@ -34,6 +34,7 @@ script: |
   sudo git checkout tags/$TAG_VERSION
   sudo tar -czvf fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz Dockerfile
   file fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz
+  sudo chown $(whoami) fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz
 deploy:
   provider: releases
   api_key:
