@@ -32,18 +32,14 @@ script: |
   cd fluent-bit
   echo "checkout tag $TAG_VERSION"
   sudo git checkout tags/$TAG_VERSION
-  cd build
-  sudo cmake ../
-  sudo make
-  file bin/fluent-bit
-  sudo tar -czvf fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz bin/fluent-bit
+  sudo tar -czvf fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz Dockerfile
   file fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz
 deploy:
   provider: releases
   api_key:
     secure: OH/tfy/BBk1mj1rJ1vFiOiNF1VUD+xmpLIgzevmaknDfrfGP9EC8xYEk8whsFvJDYPA/AYUOfAu/T/k4CkakGq1ySeOzjWCHNEk1/4gii0awBOBAx+XIlOqMo+q7h+3iPxl3nhhZ42owIi7ujDhj8XPqUcBSE2t5zCYV6bj+8QvV/GmNKt1h2/19GKk3s+LSpKWJuPzf1zzCorlu+AohvZpUicVHIiuL4WvvrZ4uKlkWr0R3ArVZ9cHLdXgNU3yx1Bx7EIgUN2/1hDi7chYrLBrwm0n7LcSGfk0+PXUVPcnI0dkCdTTFCf8ItFUM1V/sgxaS9DFC3JvMyApT6YjUchrk9UiIgy7p0kdxKHr9qr3Vso/A8cK5dbxiFzUjCYTWqE3WHhC++UOwR2jjn1wjwnaeyTNURTwmtJi7tuHOwiWGTSlvOUoPN7z6Py/4W9RRPfXtoePlBNCOpjBA3yrQzRi+1KOtPTMUzP/0jkfvJYkztSj3GFtZeZNRPizUpYmm7kfCv0lwLe7gF8aH6PgQy1aM0up5e5H6DeuCgsBlFuPFPhztr3KBz5gfqo6D+rBYBy1dDg3x7nwnhAiEGkWwq/tKnMZ0qjC6YIMdB90TNImPcKHrwW9e6jNl1MehXcRr5Z1JF9jlzSq1K9JtXm98taHIyB9it2ke6gFswvWvHZc=
   file: "fluent-bit-${TAG_VERSION}-${TRAVIS_CPU_ARCH}.tar.gz"
-  on:
-    repo: tejunior/fluent-bit-ci
-    branch: main
+  # on:
+  #   repo: tejunior/fluent-bit-ci
+  #   branch: main
   skip_cleanup: 'true'
