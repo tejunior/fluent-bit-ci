@@ -35,8 +35,8 @@ script: |
   sudo tar -czvf fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz Dockerfile
   file fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz
 before_deploy:
-  - git config --local user.name "teoparanhos"
-  - git tag $TAG_VERSION
+  - sudo git config --local user.name "teoparanhos"
+  - sudo git tag $TAG_VERSION
 deploy:
   provider: releases
   api_key:
