@@ -38,7 +38,7 @@ script: |
   sudo cmake ../
   sudo make
   file bin/fluent-bit
-  tar -czvf fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz bin/fluent-bit
+  sudo tar -czvf fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz bin/fluent-bit
 deploy:
   provider: releases
   api_key:
