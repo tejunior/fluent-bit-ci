@@ -1,20 +1,27 @@
 dist: bionic
 language: c
+
 git:
   depth: 3
+
 arch:
-- amd64
-- arm64
+  - amd64
+  - arm64
+
 compiler:
-- gcc
+  - gcc
+
 env:
-- TAG_VERSION="v1.6.0"
-- ARTIFACT_DIR="/home/travis/artifacts"
+  - TAG_VERSION="v1.6.0"
+  - ARTIFACT_DIR="/home/travis/artifacts"
+
 before_script:
+
 addons:
   apt:
     packages:
     - cmake
+
 matrix:
   include:
   - os: linux
@@ -29,6 +36,7 @@ matrix:
       zip -r "${ARTIFACT_DIR}"/fluent-bit-"${TAG_VERSION}"-win64.zip td-agent-bit-"${TAG_VERSION}"-win64/.
 script: |
   mkdir $ARTIFACT_DIR
+  echo "artifact dir $ARTIFACT_DIR"
   echo "CC = $CC, CXX = $CXX"
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
@@ -44,6 +52,7 @@ script: |
   sudo tar -C ./bin -czvf $ARTIFACT_DIR/fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz fluent-bit
   file $ARTIFACT_DIR/fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz
   sudo chown -R travis:travis /home/travis/
+  
 deploy:
   provider: releases
   api_key:
