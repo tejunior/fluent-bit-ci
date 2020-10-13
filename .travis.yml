@@ -27,6 +27,7 @@ matrix:
       unzip td-agent-bit-"${TAG_VERSION}"-win64.zip
       zip -r "${ARTIFACT_DIR}"/fluent-bit-"${TAG_VERSION}"-win32.zip td-agent-bit-"${TAG_VERSION}"-win32/.
       zip -r "${ARTIFACT_DIR}"/fluent-bit-"${TAG_VERSION}"-win64.zip td-agent-bit-"${TAG_VERSION}"-win64/.
+      cd $ARTIFACT_DIR
 script: |
   mkdir $ARTIFACT_DIR
   echo "CC = $CC, CXX = $CXX"
@@ -44,6 +45,7 @@ script: |
   sudo tar -C ./bin -czvf $ARTIFACT_DIR/fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz fluent-bit
   file $ARTIFACT_DIR/fluent-bit-$TAG_VERSION-$TRAVIS_CPU_ARCH.tar.gz
   sudo chown -R travis:travis /home/travis/
+  cd $ARTIFACT_DIR
 deploy:
   provider: releases
   api_key:
