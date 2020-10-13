@@ -8,8 +8,8 @@ arch:
 compiler:
 - gcc
 env:
-  - TAG_VERSION="v1.6.0"
-  - ARTIFACT_DIR="/home/travis/artifacts"
+- TAG_VERSION="v1.6.0"
+- ARTIFACT_DIR="/home/travis/artifacts"
 before_script:
 addons:
   apt:
