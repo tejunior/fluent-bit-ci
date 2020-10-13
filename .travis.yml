@@ -1,4 +1,4 @@
-dist: focal
+dist: bionic
 language: c
 git:
   depth: 3
@@ -14,15 +14,6 @@ addons:
   apt:
     packages:
     - cmake
-matrix:
-  include:
-  - os: linux
-    dist: bionic
-    language: c
-    compiler: gcc
-    script: |
-      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
-      sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 script: |
   echo "CC = $CC, CXX = $CXX"
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
