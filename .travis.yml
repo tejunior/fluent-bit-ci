@@ -8,8 +8,8 @@ arch:
 compiler:
 - gcc
 env:
-- TAG_VERSION="v1.6.0"
-- ARTIFACT_DIR="/home/travis/artifacts"
+  - TAG_VERSION="v1.6.0"
+  - ARTIFACT_DIR="/home/travis/artifacts"
 before_script:
 addons:
   apt:
@@ -35,7 +35,7 @@ script: |
   cd ~
   sudo git clone https://github.com/fluent/fluent-bit.git
   cd fluent-bit
-  echo "checkout tag $TAG_VERSION"
+  echo "checkout tag ${TAG_VERSION}"
   sudo git checkout tags/$TAG_VERSION
   cd build
   sudo cmake ../
