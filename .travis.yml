@@ -43,7 +43,6 @@ script: |
   echo "CC = $CC, CXX = $CXX"
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
-  cd ~
   sudo git clone https://github.com/fluent/fluent-bit.git
   cd fluent-bit
   echo "checkout tag ${FB_RELEASE_VERSION}"
