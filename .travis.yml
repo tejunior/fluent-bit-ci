@@ -12,11 +12,7 @@ compiler:
   - gcc
 
 env:
-  global:
-    - FB_RELEASE_VERSION="v1.6.0"
-    - FB_WIN_RELEASE="1.6"
-    - FB_WIN_VERSION="1.6.0"
-    - ARTIFACT_DIR="/home/travis/artifacts"
+  - ARTIFACT_DIR="/home/travis/artifacts"
 
 before_script:
 
@@ -30,6 +26,9 @@ matrix:
   - os: linux
     dist: bionic
     script: |
+      FB_RELEASE_VERSION="v1.6.0"
+      FB_WIN_RELEASE="1.6"
+      FB_WIN_VERSION="1.6.0"
       mkdir $ARTIFACT_DIR
       wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_WIN_VERSION}-win32".zip
       wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_WIN_VERSION}-win64".zip
@@ -38,6 +37,9 @@ matrix:
       zip -r "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win32.zip td-agent-bit-"${FB_WIN_VERSION}"-win32/.
       zip -r "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win64.zip td-agent-bit-"${FB_WIN_VERSION}"-win64/.
 script: |
+  FB_RELEASE_VERSION="v1.6.0"
+  FB_WIN_RELEASE="1.6"
+  FB_WIN_VERSION="1.6.0"
   mkdir $ARTIFACT_DIR
   echo "artifact dir $ARTIFACT_DIR"
   echo "CC = $CC, CXX = $CXX"
