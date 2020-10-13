@@ -15,18 +15,6 @@ addons:
   apt:
     packages:
     - cmake
-matrix:
-  include:
-  - os: linux
-    dist: bionic
-    script: |
-      mkdir $ARTIFACT_DIR
-      wget "http://fluentbit.io/releases/${TAG_VERSION}/td-agent-bit-${TAG_VERSION}-win32".zip
-      wget "http://fluentbit.io/releases/${TAG_VERSION}/td-agent-bit-${TAG_VERSION}-win64".zip
-      unzip td-agent-bit-"${TAG_VERSION}"-win32.zip
-      unzip td-agent-bit-"${TAG_VERSION}"-win64.zip
-      zip -r "${ARTIFACT_DIR}"/fluent-bit-"${TAG_VERSION}"-win32.zip td-agent-bit-"${TAG_VERSION}"-win32/.
-      zip -r "${ARTIFACT_DIR}"/fluent-bit-"${TAG_VERSION}"-win64.zip td-agent-bit-"${TAG_VERSION}"-win64/.
 script: |
   mkdir $ARTIFACT_DIR
   echo "CC = $CC, CXX = $CXX"
