@@ -28,7 +28,7 @@ addons:
 matrix:
   include:
   - os: linux
-    dist: bionic        
+    dist: bionic
     script: |
       mkdir $ARTIFACT_DIR
       wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_WIN_VERSION}-win32".zip
