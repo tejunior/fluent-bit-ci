@@ -19,9 +19,6 @@ matrix:
   include:
   - os: linux
     dist: bionic
-    language: c
-    env:
-    - WIN_ARCH=""
     script: |
       mkdir $ARTIFACT_DIR
       wget "http://fluentbit.io/releases/${TAG_VERSION}/td-agent-bit-${TAG_VERSION}-win32".zip
