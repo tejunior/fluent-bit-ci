@@ -19,6 +19,7 @@ matrix:
   include:
   - os: linux
     dist: bionic
+    language: c
     env:
     - WIN_ARCH=""
     script: |
