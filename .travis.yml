@@ -35,8 +35,8 @@ matrix:
       wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_WIN_VERSION}-win64".zip
       unzip td-agent-bit-"${FB_WIN_VERSION}"-win32.zip
       unzip td-agent-bit-"${FB_WIN_VERSION}"-win64.zip
-      zip -r "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win32.zip td-agent-bit-"${FB_WIN_VERSION}"-win32/.
-      zip -r "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win64.zip td-agent-bit-"${FB_WIN_VERSION}"-win64/.
+      zip -r "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win32.zip td-agent-bit-"${FB_WIN_VERSION}"-win32/bin/.
+      zip -r "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win64.zip td-agent-bit-"${FB_WIN_VERSION}"-win64/bin/.
 script: |
   mkdir $ARTIFACT_DIR
   echo "artifact dir $ARTIFACT_DIR"
