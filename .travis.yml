@@ -13,9 +13,8 @@ compiler:
 
 env:
   global:
-    - FB_RELEASE_VERSION="v1.6.0"
+    - FB_RELEASE_VERSION="1.6.0"
     - FB_WIN_RELEASE="1.6"
-    - FB_WIN_VERSION="1.6.0"
     - ARTIFACT_DIR="/home/travis/artifacts"
 
 before_script:
@@ -31,23 +30,22 @@ matrix:
     dist: xenial
     script: |
       mkdir $ARTIFACT_DIR
-      wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_WIN_VERSION}-win32".zip
-      wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_WIN_VERSION}-win64".zip
-      unzip td-agent-bit-"${FB_WIN_VERSION}"-win32.zip
-      unzip td-agent-bit-"${FB_WIN_VERSION}"-win64.zip
-      zip -r -j "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win32.zip td-agent-bit-"${FB_WIN_VERSION}"-win32/bin/.
-      zip -r -j "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win64.zip td-agent-bit-"${FB_WIN_VERSION}"-win64/bin/.
+      wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_RELEASE_VERSION}-win32".zip
+      wget "https://fluentbit.io/releases/${FB_WIN_RELEASE}/td-agent-bit-${FB_RELEASE_VERSION}-win64".zip
+      unzip td-agent-bit-"${FB_RELEASE_VERSION}"-win32.zip
+      unzip td-agent-bit-"${FB_RELEASE_VERSION}"-win64.zip
+      zip -r -j "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win32.zip td-agent-bit-"${FB_RELEASE_VERSION}"-win32/bin/.
+      zip -r -j "${ARTIFACT_DIR}"/fluent-bit-"${FB_RELEASE_VERSION}"-win64.zip td-agent-bit-"${FB_RELEASE_VERSION}"-win64/bin/.
 script: |
   mkdir $ARTIFACT_DIR
   echo "artifact dir $ARTIFACT_DIR"
   echo "CC = $CC, CXX = $CXX"
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
-  sudo git clone https://github.com/fluent/fluent-bit.git
-  cd fluent-bit
-  echo "checkout tag ${FB_RELEASE_VERSION}"
-  sudo git checkout tags/$FB_RELEASE_VERSION
-  cd build
+  fbReleaseName=v$FB_RELEASE_VERSION
+  wget https://github.com/fluent/fluent-bit/archive/"${fbReleaseName}".tar.gz
+  tar -xvzf "${fbReleaseName}".tar.gz -C "${fbReleaseName}" --strip-components 1 || true
+  cd $fbReleaseName/build
   sudo cmake ../
   sudo make
   file bin/fluent-bit
