@@ -43,13 +43,10 @@ script: |
   sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
   sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
   fbReleaseName=v$FB_RELEASE_VERSION
+  mkdir -p "${fbReleaseName}"
   wget https://github.com/fluent/fluent-bit/archive/"${fbReleaseName}".tar.gz
   tar -xvzf "${fbReleaseName}".tar.gz -C "${fbReleaseName}" --strip-components 1 || true
-  ls -la
-  cd $fbReleaseName
-  ls -la
-  cd build
-  ls -la
+  cd $fbReleaseName/build
   sudo cmake ../
   sudo make
   file bin/fluent-bit
