@@ -45,7 +45,11 @@ script: |
   fbReleaseName=v$FB_RELEASE_VERSION
   wget https://github.com/fluent/fluent-bit/archive/"${fbReleaseName}".tar.gz
   tar -xvzf "${fbReleaseName}".tar.gz -C "${fbReleaseName}" --strip-components 1 || true
-  cd $fbReleaseName/build
+  ls -la
+  cd $fbReleaseName
+  ls -la
+  cd build
+  ls -la
   sudo cmake ../
   sudo make
   file bin/fluent-bit
